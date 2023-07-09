@@ -15,7 +15,7 @@ public interface UserMapper {
 //    UserBean userbean;
 
     //接口：方法抽象，默认public                         #{}取值
-    @Select("select * from tbl-user where username = #{username} and password = #{password}")
+    @Select("select * from tbl_user where username = #{username} and password = #{password}")
     UserBean getUser(@Param("username") String username,
                      @Param("password") String password);
     //编译时会改形参名字
