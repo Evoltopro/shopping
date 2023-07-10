@@ -1,5 +1,6 @@
 package com.example.shop.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.shop.bean.UserBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -9,14 +10,13 @@ import org.springframework.stereotype.Repository;
 
 //Mapper MyBabatis区域 写sql语句的地方
 @Repository
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<UserBean> {
 
 //    @Autowired
 //    UserBean userbean;
 
     //接口：方法抽象，默认public                         #{}取值
     @Select("select * from tbl_user where username = #{username} and password = #{password}")
-    UserBean getUser(@Param("username") String username,
-                     @Param("password") String password);
+    UserBean getUser(UserBean bean);
     //编译时会改形参名字
 }
