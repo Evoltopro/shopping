@@ -1,7 +1,9 @@
 package com.example.shop.controller;
 
+import com.example.shop.bean.ProductBean;
 import com.example.shop.mapper.CategoryMapper;
 import com.example.shop.mapper.ProductMapper;
+import com.example.shop.util.NotNullUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/product")
-public class ProductController {
+public class ProductController extends BaseController{
     @Autowired
     ProductMapper productMapper;
     @Autowired
@@ -45,9 +49,19 @@ public class ProductController {
         return "/product/add";//转发到templates/product/add.html
     }
     @PostMapping("/add") //RequestMapping 什么类型都能进
-    public String add(){
+    public String add(ProductBean bean, HttpServletResponse resp){
+        //判断空
+        if(NotNullUtil.isBlank(bean)){
+            return jsAlert("请完善信息!",resp);
+        }
 //        System.out.println("表单进来");
-        return null;
+        if(bean.id == null) {
+            bean.ctime = new Date(); //当前时间，上架时间
+            productMapper.insert(bean);
+        } else{
+            productMapper.updateById(bean);
+        }
+        return "redirect:/product/list";
     }
     //get <a></>,重定向 浏览器网址 最不安全
     //post 写代码访问 安全级低

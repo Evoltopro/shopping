@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html xmlns:max-width="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,6 +12,7 @@
 <script src="../../../js/bootstrap.min.js"></script>
     <script src="../js/jquery.ajaxupload.js"></script>
 </head>
+
 <script>
     window.onload = function () {
         var uid = localStorage.getItem('shop_uid');
@@ -33,50 +34,54 @@
 <body>
 <ul class="breadcrumb" style="margin:0;">
     <li><a href="#">商品管理</a></li>
-    <li>添加商品</li>
+    <#if bean??>
+        <li>修改商品</li>
+    <#else>
+        <li>添加商品</li>
+    </#if>
 </ul>
 <form action="" method="post" class="form-horizontal">
-
+    <input type = "hidden"  name = "id" value="${(bean.id)!}"/>
     <h5 class="page-header alert-info" style="padding:10px;margin:0 0 10px 0;">基本信息</h5>
 	<div class="row col-sm-9 form-group">
         <label class="col-sm-3 control-label">商品名称</label>
         <div class="col-sm-6">
-            <input type="text" name="product" class="form-control input-sm" value=""/>
+            <input type="text" name="product" class="form-control input-sm" value="${(bean.product)!}"/>
         </div>
     </div>
     <div class="row col-sm-9 form-group">
         <label class="col-sm-3 control-label">单价</label>
         <div class="col-sm-6">
-            <input type="number" name="price" class="form-control input-sm" value=""/>
+            <input type="number" name="price" class="form-control input-sm" value="${((bean.price)?c)!}"/>
         </div>
     </div>
     <div class="row col-sm-9 form-group">
         <label class="col-sm-3 control-label">图片</label>
         <div class="col-sm-6">
-            <input type="text" name="logo" class="form-control input-sm" value=""/>
+            <input type="hidden" name="logo" class="form-control input-sm" value="${(bean.logo)!}"/>
             <input id="upload" type="button" class = "btn btn-success" value="上传"/>
-            <img src="" style="display: block"/>
+            <img src="${(bean.logo)!}" style="display: block; max-width: 400px"/>
         </div>
     </div>
     <div class="row col-sm-9 form-group">
         <label class="col-sm-3 control-label">是否热卖</label>
         <div class="col-sm-6">
             <select name="hot" class="form-control input-sm" >
-                <option>热卖</option>
-                <option>非热卖</option>
-            </select>
+                <option <#if (bean.hot)??&&(bean.hot)=='热卖'>selected</#if> >热卖</option>
+                <option <#if (bean.hot)??&&(bean.hot)=='非热卖'>selected</#if> >非热卖</option>
+        </select>
         </div>
     </div>
     <div class="row col-sm-9 form-group">
         <label class="col-sm-3 control-label">库存</label>
         <div class="col-sm-6">
-            <input type="number" name="num" class="form-control input-sm" value=""/>
+            <input type="number" name="num" class="form-control input-sm" value="${((bean.num)?c)!}"/>
         </div>
     </div>
     <div class="row col-sm-9 form-group">
         <label class="col-sm-3 control-label">商家</label>
         <div class="col-sm-6">
-            <input id="uid" type="hidden" name="uid" class="form-control input-sm" value=""/>
+            <input id="uid" type="hidden" name="uid" class="form-control input-sm">
             <input id ="user" readonly class="form-control input-sm"/>
         </div>
     </div>
@@ -85,7 +90,9 @@
         <div class="col-sm-6">
             <select  name="cid" class="form-control input-sm" >
                 <#list cateList as cate>
-                    <option value = "${cate.id}">${cate.category}</option>
+                    <option value = "${cate.id}"
+                        <#if (bean.cid)??&&(bean.cid)==cate.id>selected</#if>
+                    >${cate.category}</option>
                 </#list>
             </select>
         </div>
