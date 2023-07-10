@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <table>
+    <#list retList as bean>
+     <tr>
+         <td>${bean.product}</td>
+         <td>${bean.price}元</td>
+         <td>${bean.hot}</td>
+     </tr>
+     </#list>
+  </table>
+</body>
+</html>
