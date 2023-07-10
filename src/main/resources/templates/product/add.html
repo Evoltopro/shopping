@@ -12,7 +12,6 @@
 <script src="../../../js/bootstrap.min.js"></script>
     <script src="../js/jquery.ajaxupload.js"></script>
 </head>
-
 <script>
     window.onload = function () {
         var uid = localStorage.getItem('shop_uid');
@@ -22,11 +21,13 @@
         $.ajaxUploadSettings.name = 'file';
         //{}代表对象
         $('#upload').ajaxUploadPrompt({
-            url:'',   //上传到
-            success(data){  //图片上传成功调用
-
+            url: '/upload',               //上传到哪
+            success(data){                //图片上传成功调用
+                //alert(data);            //提醒  调试用
+                $('#upload').prev().val(data);
+                $('#upload').next().attr('src',data);
             }
-        }); //jquery写法
+        });
     }
 </script>
 <body>

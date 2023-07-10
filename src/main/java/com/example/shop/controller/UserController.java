@@ -3,11 +3,15 @@ package com.example.shop.controller;
 
 import com.example.shop.bean.UserBean;
 import com.example.shop.mapper.UserMapper;
+import com.example.shop.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -41,4 +45,14 @@ public class UserController {
     //重定向：重新刷新网页，是浏览器的行为，地址会改变,一般使用重定向进入java地
     //转发是java行为
 
+    @ResponseBody //底层为json 将字符串返回给网页
+    @RequestMapping("/upload") //Tomcat吸收错误
+    public String upload(MultipartFile file) throws Exception{
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        //保存到file
+        FileUtil.createFile("N:/create/shop/upload");
+        file.transferTo(new File("N:/create/shop/upload/"+ fileName));
+        return "/shop/upload/" + fileName; //3.将这个字符串返回到网站
+    }
 }

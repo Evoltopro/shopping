@@ -12,8 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper extends BaseMapper<UserBean> {
 
-//    @Autowired
-//    UserBean userbean;
+
 
     //接口：方法抽象，默认public                         #{}取值
     @Select("select * from tbl_user where username = #{username} and password = #{password}")
