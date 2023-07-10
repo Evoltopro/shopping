@@ -25,6 +25,7 @@ public class ProductBean {
     public Integer uid;//外键 人 卖的人
     public Integer cid;//外键 类别 所属类型id
 
+    //视图
     @TableField(exist=false)
     public String user;
     @TableField(exist=false)

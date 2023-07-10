@@ -14,6 +14,12 @@
 <script src="assets/js/ace-extra.min.js"></script>
 <script src="assets/jquery.min.js"></script>
 </head>
+<script>
+    window.onload = function () {
+        localStorage.setItem('shop_uid','${user.id}');
+        localStorage.setItem('shop_user','${user.user}');
+    }
+</script>
 
 <body>
 <div class="navbar navbar-default" id="navbar">
