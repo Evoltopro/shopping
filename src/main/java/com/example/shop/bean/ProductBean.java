@@ -2,6 +2,7 @@ package com.example.shop.bean;
 
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
@@ -23,4 +24,9 @@ public class ProductBean {
 
     public Integer uid;//外键 人 卖的人
     public Integer cid;//外键 类别 所属类型id
+
+    @TableField(exist=false)
+    public String user;
+    @TableField(exist=false)
+    public String category;
 }

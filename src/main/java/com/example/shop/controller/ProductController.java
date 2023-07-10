@@ -16,7 +16,7 @@ public class ProductController {
     //selectList(null);查询表所有数据，得到一个List
     //ArrayList让数组添加、删除数据
 
-    // localost:8080/list
+    // localhost:8080/list
     @RequestMapping("/list")
     public String list(HttpServletRequest req){
         System.out.println("进入到list中");
