@@ -25,18 +25,24 @@ public class ProductController extends BaseController{
     //selectList(null);查询表所有数据，得到一个List
     //ArrayList让数组添加、删除数据
 
-    // localhost:8080/list
+    // localhost:8080/product/list?uid =
+    @RequestMapping("/all")
+    public String all(HttpServletRequest req){ //查询视图数据
+        req.setAttribute("retList",productMapper.selectView());
+        return "/product/all";
+    }
     @RequestMapping("/list")  //查询列表
-    public String list(HttpServletRequest req){
+    public String list(int uid,HttpServletRequest req){
         System.out.println("进入到list中");
-        req.setAttribute("retList",productMapper.selectList(null));
+        req.setAttribute("retList",productMapper.selectList(uid));
         return "/product/list";
     }
 
     @RequestMapping("/del")   //删除
     public String del(int id){
+        int uid = productMapper.selectById(id).uid;
         productMapper.deleteById(id);
-        return "redirect:/product/list"; //传到上边重新查询
+        return "redirect:/product/list?uid=" + uid; //传到上边重新查询
     }
 
     //product/add
@@ -61,7 +67,7 @@ public class ProductController extends BaseController{
         } else{
             productMapper.updateById(bean);
         }
-        return "redirect:/product/list";
+        return "redirect:/product/list?uid=" + bean.uid;
     }
     //get <a></>,重定向 浏览器网址 最不安全
     //post 写代码访问 安全级低
