@@ -1,5 +1,7 @@
 package com.example.shop.bean;
 
+import java.util.List;
+
 //为小程序准备，返回小程序的数据都在此定义
 public class VxResp {
 
@@ -14,5 +16,6 @@ public class VxResp {
 
     public String  uid = "";  //返回uid给小程序
 
+    public List<ProductBean> hots; // 数组
 
 }
