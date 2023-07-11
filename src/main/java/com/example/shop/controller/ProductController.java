@@ -26,7 +26,7 @@ public class ProductController extends BaseController{
     //ArrayList让数组添加、删除数据
 
     // localhost:8080/list
-    @RequestMapping("/list")
+    @RequestMapping("/list")  //查询列表
     public String list(HttpServletRequest req){
         System.out.println("进入到list中");
         req.setAttribute("retList",productMapper.selectList(null));
