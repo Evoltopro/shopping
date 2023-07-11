@@ -17,5 +17,5 @@ public class VxResp {
     public String  uid = "";  //返回uid给小程序
 
     public List<ProductBean> hots; // 数组
-
+     //
 }
