@@ -2,8 +2,11 @@ package com.example.shop.controller;
 
 
 import com.example.shop.bean.UserBean;
+import com.example.shop.bean.VxResp;
 import com.example.shop.mapper.UserMapper;
 import com.example.shop.util.FileUtil;
+import com.example.shop.util.NotNull;
+import com.example.shop.util.NotNullUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,20 +23,33 @@ public class UserController {
     @Autowired
     UserMapper userMapper;
 
+    @ResponseBody // 把java对象转成字符串
     @RequestMapping("/login/vx")
-    public void login(UserBean bean)
+    public VxResp login(UserBean bean)
     {
-        System.out.println(bean.username);
-        System.out.println(bean.password);
+//        System.out.println(bean.username);
+//        System.out.println(bean.password);
+        VxResp vx = new VxResp();
+        if(NotNullUtil.isBlank(bean)){
+            vx.fail("请完善信息");
+            return vx;
+        }
+
         bean.status = "买家";
-        UserBean user = userMapper.getUser(bean);
-        if(user == null)
-        {
-            System.out.println("用户名或密码错误");
+        if(userMapper.haveUser(bean.username) != null){//账号存在
+            UserBean user = userMapper.getUser(bean);
+            if(user == null) {
+                vx.fail("密码错误");
+            }else{
+                //登陆成功的id返给小程序
+                vx.uid = String.valueOf(user.id);
+            }
+        } else{//没有账号
+            bean.user = bean.username; //完善昵称
+            userMapper.insert(bean);   // 新人注册到用户表中
+            vx.uid = String.valueOf(bean.id);
         }
-        else {
-            System.out.println("登录成功");
-        }
+        return vx; //把对象转成字符串返回给java
     }
 
     // http://localhost:8080/login?username=xxx&password

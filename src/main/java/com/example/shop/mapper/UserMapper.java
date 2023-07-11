@@ -18,5 +18,7 @@ public interface UserMapper extends BaseMapper<UserBean> {
     @Select("select * from tbl_user where username = #{username} and password = #{password} and status = #{status}")
     UserBean getUser(UserBean bean);
     //编译时会改形参名字
+    @Select("select * from tbl_user where username = #{username}")
+    UserBean haveUser(@Param("username")String username);
 
 }
