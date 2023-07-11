@@ -20,15 +20,31 @@ public class UserController {
     @Autowired
     UserMapper userMapper;
 
+    @RequestMapping("/login/vx")
+    public void login(UserBean bean)
+    {
+        System.out.println(bean.username);
+        System.out.println(bean.password);
+        bean.status = "买家";
+        UserBean user = userMapper.getUser(bean);
+        if(user == null)
+        {
+            System.out.println("用户名或密码错误");
+        }
+        else {
+            System.out.println("登录成功");
+        }
+    }
+
     // http://localhost:8080/login?username=xxx&password
     @RequestMapping("/login")
     public String login(UserBean bean, HttpServletRequest req) throws Exception {
+        bean.status = "卖家";
         UserBean user = userMapper.getUser(bean);
         if(user == null) {
-            System.out.println("wrong");
+            System.out.println("用户名或密码错误");
             return "redirect:/index.html?msg=" + URLEncoder.encode("用户名或密码错误" , "utf-8");//重定向
         } else {
-//            System.out.println("成功登录");
 //            req.setAttribute("user",user);//带参数转发，网页${}渲染带过来的数据
 //            return "/main";  //转发，打开templates中的网页，里面的网页只能通过Java处理，转发打开
               return "redirect:/main?uid=" + user.id; //重定向实现
