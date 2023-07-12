@@ -9,6 +9,8 @@ import com.example.shop.util.NotNull;
 import com.example.shop.util.NotNullUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -86,5 +88,11 @@ public class UserController {
         FileUtil.createFile("D:/create/shop/upload");
         file.transferTo(new File("D:/create/shop/upload/"+ fileName));
         return "/shop/upload/" + fileName; //3.将这个字符串返回到网站
+    }
+
+    @RequestMapping("/yanzhengma")
+    public String yanzheng(String phone){
+        System.out.println("验证码");
+        return "验证码";
     }
 }
