@@ -62,7 +62,7 @@ public class ProductController extends BaseController{
     }
     @RequestMapping("/list")  //查询列表
     public String list(int uid,HttpServletRequest req){
-        System.out.println("进入到list中");
+        System.out.println("进入到productlist中");
         req.setAttribute("retList",productMapper.selectList(uid));
         return "/product/list";
     }

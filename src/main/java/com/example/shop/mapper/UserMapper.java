@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface UserMapper extends BaseMapper<UserBean> {
 
 
-
     //接口：方法抽象，默认public                         #{}取值
     @Select("select * from tbl_user where username = #{username} and password = #{password} and status = #{status}")
     UserBean getUser(UserBean bean);

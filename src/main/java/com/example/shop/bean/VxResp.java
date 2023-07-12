@@ -20,4 +20,6 @@ public class VxResp {
     public List<ProductBean> hots; // 数组
 
     public List<ProductBean> products;
+
+
 }
