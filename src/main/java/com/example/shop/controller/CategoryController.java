@@ -60,7 +60,7 @@ public class CategoryController extends BaseController{
         } catch (Exception e){
             return jsAlert("类别名称不能重复",resp);
         }
-        return "redirect:/product/list";
+        return "redirect:/category/list";
     }
 
 }
