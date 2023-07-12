@@ -83,8 +83,8 @@ public class UserController {
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
         //保存到file
-        FileUtil.createFile("N:/create/shop/upload");
-        file.transferTo(new File("N:/create/shop/upload/"+ fileName));
+        FileUtil.createFile("D:/create/shop/upload");
+        file.transferTo(new File("D:/create/shop/upload/"+ fileName));
         return "/shop/upload/" + fileName; //3.将这个字符串返回到网站
     }
 }

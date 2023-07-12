@@ -22,7 +22,7 @@ spring:
     name: mysql
     url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf8&autoReconnect=true&rewriteBatchedStatements=TRUE&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: 3465479
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     initialSize: 5
@@ -39,4 +39,6 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     spring.datasource.filters: stat,wall,log4j
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-    
+server:
+  port: 8081
+

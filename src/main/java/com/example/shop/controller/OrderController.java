@@ -1,52 +1,52 @@
 package com.example.shop.controller;
 
 import com.example.shop.bean.OrderBean;
-import com.example.shop.bean.UserBean;
+
 import com.example.shop.bean.VxResp;
+import com.example.shop.mapper.CategoryMapper;
 import com.example.shop.mapper.OrderMapper;
-import com.example.shop.mapper.ProductMapper;
+
 import com.example.shop.util.NotNullUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController extends BaseController{
-
     @Autowired
     OrderMapper orderMapper;
 
-    @ResponseBody // 把java对象转成字符串
+
+    @ResponseBody    //把对象变成字符
     @RequestMapping("/order/vx")
-    public VxResp order(OrderBean bean){
+    public VxResp index(OrderBean bean){
         System.out.println(bean.name);
-
         VxResp vx = new VxResp();
-        if(NotNullUtil.isBlank(bean)){
-            vx.fail("请完善信息");
-            return vx;
-        }
-
-
-        orderMapper.insert(bean);
-        vx.uid = String.valueOf(bean.id);
-
 
         return vx;
     }
 
 
-
     @RequestMapping("/list")  //查询列表
-    public String list(int uid, HttpServletRequest req) {
-        System.out.println("进入到orderlist中");
-        req.setAttribute("retList", orderMapper.selectOrderUser(uid));
+    public String list(HttpServletRequest req){
+        req.setAttribute("retList",orderMapper.selectOrder());
         return "/order/list";
-
-
     }
+
+    @RequestMapping("/del")   //删除
+    public String del(int id){
+        orderMapper.delete(id);
+        return "redirect:/order/list"; //传到上边重新查询
+    }
+
 }

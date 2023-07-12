@@ -36,7 +36,7 @@ public class ShopApplication implements WebMvcConfigurer {
 
     @Override //虚拟路径：上传图片成功后，要用，将未显示的图片显示出来
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/shop/**").addResourceLocations("file:N:/create/shop/");
+        registry.addResourceHandler("/shop/**").addResourceLocations("file:D:/create/shop/");
     }
 
 }

@@ -21,7 +21,7 @@
     <div class="row alert alert-info" style="margin:0;padding:3px;">
 
 
-       <a class="btn btn-success" href="/product/add">订单添加</a>
+
 
     </div>
 
@@ -34,28 +34,20 @@
             <th>地址</th>
             <th>总价</th>
             <th>下单时间</th>
-            <th>所属类别</th>
 
         </tr>
         <#list retList as bean>
         <tr>
             <td>${bean_index+1}</td>
             <td>${(bean.id)!}</td>
-            <td>${(bean.product)!}</td>
-            <td>${(bean.price)!}元</td>
-            <td>
-                <a href="${(bean.logo)!}" target="_blank">
-                    ${(bean.logo)!}
-                </a>
-            </td>
-            <td>${(bean.hot)!}</td>
+            <td>${(bean.name)!}</td>
+            <td>${(bean.mobile)!}</td>
+            <td>${(bean.address)!}</td>
+            <td>${(bean.total)!}元</td>
             <td>${(bean.ctime)?string('yyyy-MM-dd HH:mm')}</td>
-            <td>还剩${(bean.num)!}个</td>
-            <td>${(bean.user)!}</td>
-            <td>${(bean.category)!}</td>
+
             <th>
-                <a class="btn btn-primary btn-xs" href="/product/add?id=${bean.id}">修改</a>
-                <a class="btn btn-danger btn-xs" href="/product/del?id=${bean.id}">删除</a>
+                <a class="btn btn-danger btn-xs" href="/order/del?id=${bean.id}">删除</a>
             </th>
         </tr>
         </#list>
