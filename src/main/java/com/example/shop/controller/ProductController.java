@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -41,6 +42,11 @@ public class ProductController extends BaseController{
 
         } else{ //有类别，按照类别id查询这个类别的商品列表
             vx.products = productMapper.selectProduct(cid);
+        }
+        //格式化工具
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        for(ProductBean bean : vx.products){
+            bean.ftime = sdf.format(bean.ctime); //data ctime-> String ftime
         }
         return vx;
     }
@@ -77,6 +83,7 @@ public class ProductController extends BaseController{
 
         return "/product/add";//转发到templates/product/add.html
     }
+
     @PostMapping("/add") //RequestMapping 什么类型都能进
     public String add(ProductBean bean, HttpServletResponse resp){
         //判断空

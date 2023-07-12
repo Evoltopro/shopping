@@ -36,4 +36,6 @@ public class ProductBean {
     public String user;
     @TableField(exist=false)
     public String category;
+    @TableField(exist = false) //数据库中没有
+    public String ftime; //默认空
 }
