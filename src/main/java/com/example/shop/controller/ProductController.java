@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -26,9 +27,21 @@ public class ProductController extends BaseController{
 
     @ResponseBody    //把对象变成字符
     @RequestMapping("/index/vx")
-    public VxResp index(){
+    public VxResp index(Integer cid){
         VxResp vx = new VxResp();
+        vx.categorys = categoryMapper.selectList(null);
         vx.hots = productMapper.selectHot();
+        if(cid == null && !vx.categorys.isEmpty()){
+            //cid没有，类别数组有
+            cid = vx.categorys.get(0).id;
+        }
+        if(cid == null){
+            //数据库空
+            vx.products = new ArrayList<>();//空商品数组
+
+        } else{ //有类别，按照类别id查询这个类别的商品列表
+            vx.products = productMapper.selectProduct(cid);
+        }
         return vx;
     }
 

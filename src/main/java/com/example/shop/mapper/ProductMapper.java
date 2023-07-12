@@ -16,4 +16,6 @@ public interface ProductMapper extends BaseMapper<ProductBean> {
 
     @Select("select * from v_product where hot='热卖'")
     List<ProductBean> selectHot();
+    @Select("select * from v_product where cid = #{cid} order by id desc")
+    List<ProductBean> selectProduct(@Param("cid")int cid);
 }
