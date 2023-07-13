@@ -11,9 +11,8 @@ import java.util.List;
 @Mapper
 public interface CommentMapper {
 
-    @Select("select c.id,p.product,u.username,c.comment,c.ctime \n" +
-            "from tbl_product p,tbl_user u, tbl_comment c\n" +
-            "where c.pid = p.id and c.uid = u.id")
+    @Select("select c.id,p.product,u.username,c.comment,c.ctime " +
+    "from tbl_comment c left join tbl_user u on u.id = c.uid left join tbl_product p on c.pid = p.id")
     List<CommentBean> list();
 
     @Insert("insert into tbl_comment(pid,uid,comment,ctime)values(#{pid},#{uid},#{comment},#{ctime})")

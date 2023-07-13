@@ -1,19 +1,33 @@
 package com.example.shop.bean;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 @Data
-@AllArgsConstructor
-@ToString
+@TableName("tbl_comment")
+
 public class CommentBean {
-    public int id;
-    public int pid;
-    public int uid;
+    @TableId(type = IdType.AUTO)
+    public Integer id;
+    public Integer pid;
+    public Integer uid;
     public String comment;
-    public LocalDateTime ctime;
+    public Date ctime;
+
+
+    @TableField(exist = false)
+    public String product;
+
+    @TableField(exist = false)
+    public String username;
+    // ?????
+
 }

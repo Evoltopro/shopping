@@ -81,9 +81,9 @@ public class CommentController {
                          @PathVariable("comment")String comment,
                          @PathVariable("ctime")LocalDateTime localDateTime,
                          HttpServletRequest request){
-        CommentBean commentBean = new CommentBean(id,pid,uid,comment,localDateTime);
-        System.out.println(commentBean);
-        request.setAttribute("commentBean",commentBean);
+       //CommentBean commentBean = new CommentBean(id,pid,uid,comment,localDateTime);
+        //System.out.println(commentBean);
+        //request.setAttribute("commentBean",commentBean);
         return "修改页面";
     }
 
