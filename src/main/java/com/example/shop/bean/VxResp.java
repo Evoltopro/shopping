@@ -23,5 +23,7 @@ public class VxResp {
 
     public List<CommentBean> comments;
 
+    public List<InfoBean> infos;
+
 
 }

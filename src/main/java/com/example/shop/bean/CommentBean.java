@@ -28,6 +28,8 @@ public class CommentBean {
 
     @TableField(exist = false)
     public String username;
-    // ?????
+
+    @TableField(exist = false) //数据库中没有
+    public String ftime; //默认空
 
 }

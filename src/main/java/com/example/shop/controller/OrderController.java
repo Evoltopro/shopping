@@ -42,6 +42,7 @@ public class OrderController extends BaseController{
 
     @RequestMapping("/del")   //删除
     public String del(int id){
+        System.out.println(id);
         orderMapper.delete(id);
         return "redirect:/order/list"; //传到上边重新查询
     }
