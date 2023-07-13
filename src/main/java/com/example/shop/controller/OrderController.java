@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
 
 @Controller
 @RequestMapping("/order")
@@ -29,11 +26,11 @@ public class OrderController extends BaseController{
 
     @ResponseBody    //把对象变成字符
     @RequestMapping("/order/vx")
-    public VxResp index(OrderBean bean){
+    public void order(OrderBean bean){
         System.out.println(bean.name);
         VxResp vx = new VxResp();
+        orderMapper.insert(bean);
 
-        return vx;
     }
 
 
