@@ -26,6 +26,7 @@ public class CommentController {
 
     @ResponseBody    //把对象变成字符
     @RequestMapping("/index/vx")
+
     public VxResp index(){
         VxResp vx = new VxResp();
 //        vx.categorys = categoryMapper.selectList(null);
