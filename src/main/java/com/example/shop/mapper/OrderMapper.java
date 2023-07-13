@@ -23,4 +23,9 @@ public interface OrderMapper extends BaseMapper<OrderBean> {
 
     @Delete("delete from tbl_order where id = #{id}")
     void delete(int id);
+
+    @Select("select id from view_order where username = #{username}")
+    Integer findId(String username);
+
+
 }
