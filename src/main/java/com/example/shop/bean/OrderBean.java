@@ -11,7 +11,6 @@ import lombok.ToString;
 import java.util.Date;
 
 @Data
-@ToString
 @TableName("tbl_order")
 public class OrderBean {
 
@@ -25,7 +24,9 @@ public class OrderBean {
 
     @NotNull
     public String address;
+    @NotNull
     public Integer total; //总价
+    @NotNull
     public Date ctime; //下单时间
 
     @NotNull
@@ -33,7 +34,15 @@ public class OrderBean {
 
 
     @TableField(exist = false) //数据库中没有
+    public Integer count; //默认空
+
+    @TableField(exist = false) //数据库中没有
     public String ftime; //默认空
 
+    @TableField(exist = false) //数据库中没有
+    public Integer pid; //默认空
 
+
+    @TableField(exist = false) //数据库中没有
+    public Integer price; //默认空
 }

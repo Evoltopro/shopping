@@ -38,5 +38,5 @@ public class ShoppingBean {
     public Date ctime;
 
     @TableField(exist=false)
-    public Date ftime;
+    public String ftime;
 }

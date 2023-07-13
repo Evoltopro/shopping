@@ -32,4 +32,7 @@ public class VxResp {
     public List<CollectBean> collects;
 
     public List<ShoppingBean> shoppings;
+
+    public List<FootBean> allfoot;
+
 }

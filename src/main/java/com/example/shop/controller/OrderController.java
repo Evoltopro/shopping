@@ -3,6 +3,7 @@ package com.example.shop.controller;
 import com.example.shop.bean.OrderBean;
 
 import com.example.shop.bean.ProductBean;
+import com.example.shop.bean.ShoppingBean;
 import com.example.shop.bean.VxResp;
 import com.example.shop.mapper.CartMapper;
 import com.example.shop.mapper.CategoryMapper;
@@ -56,18 +57,28 @@ public class OrderController extends BaseController{
     @ResponseBody
     @RequestMapping("/add/vx")
     public void order(OrderBean bean){
-        System.out.println(bean);
 
         Integer total = 0;
-        total += orderMapper.selectCartCount(bean.id) * orderMapper.selectCartPrice(bean.id);
+        total = bean.count * bean.price;
+
+
         bean.ctime = new Date();
         bean.total = total;
-        orderMapper.insert(bean);
 
-        Integer pid = cartMapper.selectCartPid(bean.id);
-        Integer count = cartMapper.selectCount(bean.id);
+        System.out.println(bean);
 
-        shoppingMapper.insert(count,pid,bean.id);
+
+        orderMapper.insertA(bean.name,bean.mobile,bean.address,bean.total,bean.ctime,bean.uid);
+
+//        ShoppingBean shopping = new ShoppingBean();
+//        shopping.count = bean.count;
+//        shopping.oid = 2;
+//        shopping.pid = bean.pid;
+
+        shoppingMapper.insert(bean.count,bean.pid,2);
+
+
+        cartMapper.delete(bean.pid);
 
     }
 

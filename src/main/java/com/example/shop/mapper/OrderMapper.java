@@ -7,6 +7,7 @@ import org.apache.catalina.User;
 import org.apache.ibatis.annotations.*;
 import org.beetl.sql.core.mapper.BaseMapper;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -22,14 +23,11 @@ public interface OrderMapper extends BaseMapper<OrderBean> {
     @Delete("delete from tbl_order where id = #{id}")
     void delete(int id);
 
-    @Select("select count from vv_cart where id = #{id}")
-    Integer selectCartCount(Integer id);
-
-    @Select("select price from vv_cart where id = #{id}")
-    Integer selectCartPrice(Integer id);
 
     @Select("select * from tbl_order")
     List<OrderBean> select();
 
+    @Insert("insert into tbl_order(name,mobile,address,total,ctime,uid) values(#{name},#{mobile},#{address},#{total},#{ctime},#{uid})")
+    void insertA(String name, String mobile, String address, Integer total, Date ctime, Integer uid);
 
 }
