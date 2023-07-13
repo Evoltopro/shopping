@@ -2,6 +2,7 @@ package com.example.shop.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.shop.bean.ProductBean;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 
+@Mapper
 public interface ProductMapper extends BaseMapper<ProductBean> {
 
     @Select("select * from v_product where uid = #{uid} order by ctime desc")

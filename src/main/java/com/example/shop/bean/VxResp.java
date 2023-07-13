@@ -21,5 +21,7 @@ public class VxResp {
 
     public List<ProductBean> products;
 
+    public List<CommentBean> comments;
+
 
 }
