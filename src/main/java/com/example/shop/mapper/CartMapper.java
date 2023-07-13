@@ -16,4 +16,10 @@ public interface CartMapper {
 
     @Select("select*from vv_cart")
     List<CartProduct> select();
+
+    @Select("select pid from tbl_cart where oid = #{oid}")
+    Integer selectCartPid(Integer oid);
+
+    @Select("select count from tbl_cart where oid = #{oid}")
+    Integer selectCount(Integer oid);
 }

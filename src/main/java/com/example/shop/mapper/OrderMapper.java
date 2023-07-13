@@ -30,4 +30,6 @@ public interface OrderMapper extends BaseMapper<OrderBean> {
 
     @Select("select * from tbl_order")
     List<OrderBean> select();
+
+
 }

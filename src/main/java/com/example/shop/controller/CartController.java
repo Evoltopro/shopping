@@ -23,6 +23,7 @@ public class CartController {
 
     @Autowired
     ProductMapper productMapper;
+
     List<ProductBean> list = new ArrayList<>();
 
     @ResponseBody
@@ -43,7 +44,7 @@ public class CartController {
     public VxResp index(){
         VxResp vx = new VxResp();
 
-        vx.carts=cartMapper.select();
+        vx.carts = cartMapper.select();
         //System.out.println(vx.carts);
         return vx;
     }

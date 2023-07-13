@@ -1,5 +1,6 @@
 package com.example.shop.controller;
 
+import com.example.shop.bean.InfoBean;
 import com.example.shop.bean.VxResp;
 import com.example.shop.mapper.InfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 //求购信息
 @Controller
@@ -24,6 +26,14 @@ public class InfoController {
         VxResp vx = new VxResp();
         vx.infos=infoMapper.list();
         return vx;
+    }
+
+    @ResponseBody
+    @RequestMapping("/add")
+    public void add(InfoBean infoBean){
+        System.out.println(infoBean);
+        infoBean.setCtime(new Date());
+        infoMapper.insertA(infoBean.info,infoBean.description,infoBean.ctime, infoBean.uid);
     }
 
     @RequestMapping("/list")  //查询列表

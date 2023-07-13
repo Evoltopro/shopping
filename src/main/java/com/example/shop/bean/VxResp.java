@@ -30,4 +30,6 @@ public class VxResp {
     public List<InfoBean> infos;
 
     public List<CollectBean> collects;
+
+    public List<ShoppingBean> shoppings;
 }

@@ -32,33 +32,10 @@ public class CollectController extends BaseController{
         System.out.println("你被访问了");
         VxResp vx = new VxResp();
         vx.collects = collectMapper.select();
-        System.out.println(vx.collects);
+        //System.out.println(vx.collects);
         return vx;
     }
-//    @ResponseBody
-//    @RequestMapping("collect/index/vx")
-//    public void recollect (int pid,int uid){
-//        collectMapper.insert(uid,pid);
-//
-//    }
 
-    //web显示
-    //@ResponseBody
-    //@RequestMapping("/alll")
-    //public String alll(){
-     //   List<CollectBean> list =collectMapper.select();
-       // return list.toString();
-    //}
-
-//    @ResponseBody
-//    @RequestMapping("/del")
-//    public String del(int id){
-//        // int uid = productMapper.selectById(id).uid;
-//        collectMapper.deleteById(id);
-//
-//        // 重新进入productst.html
-//        return null;
-//    }
 
     @ResponseBody
     @RequestMapping("/add")

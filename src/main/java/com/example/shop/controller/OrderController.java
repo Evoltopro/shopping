@@ -4,9 +4,11 @@ import com.example.shop.bean.OrderBean;
 
 import com.example.shop.bean.ProductBean;
 import com.example.shop.bean.VxResp;
+import com.example.shop.mapper.CartMapper;
 import com.example.shop.mapper.CategoryMapper;
 import com.example.shop.mapper.OrderMapper;
 
+import com.example.shop.mapper.ShoppingMapper;
 import com.example.shop.util.NotNullUtil;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,12 @@ public class OrderController extends BaseController{
     @Autowired
     OrderMapper orderMapper;
 
+    @Autowired
+    CartMapper cartMapper;
+
+    @Autowired
+    ShoppingMapper shoppingMapper;
+
     //订单展示
     @ResponseBody    //把对象变成字符
     @RequestMapping("/index/vx")
@@ -46,7 +54,7 @@ public class OrderController extends BaseController{
 
     //订单插入
     @ResponseBody
-    @RequestMapping("/find/vx")
+    @RequestMapping("/add/vx")
     public void order(OrderBean bean){
         System.out.println(bean);
 
@@ -55,6 +63,11 @@ public class OrderController extends BaseController{
         bean.ctime = new Date();
         bean.total = total;
         orderMapper.insert(bean);
+
+        Integer pid = cartMapper.selectCartPid(bean.id);
+        Integer count = cartMapper.selectCount(bean.id);
+
+        shoppingMapper.insert(count,pid,bean.id);
 
     }
 

@@ -21,10 +21,10 @@ public class CollectBean {
     public Integer price;
     //1 把图片通过base64算法转成特别长的字符串
     @NotNull
-    public String logo; //2 数据库保存图片保存的是地址
+    public String logo;
 
-    public Integer uid;//外键 人 卖的人
-    public Integer pid;//外键 商品 所属类型id
+    public Integer uid;
+    public Integer pid;
 
     //视图
     @TableField(exist=false)
