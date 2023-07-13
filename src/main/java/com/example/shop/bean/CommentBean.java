@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Data
 @TableName("tbl_comment")
-
+@ToString
 public class CommentBean {
     @TableId(type = IdType.AUTO)
     public Integer id;

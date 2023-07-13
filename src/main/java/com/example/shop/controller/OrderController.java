@@ -30,16 +30,16 @@ public class OrderController extends BaseController{
     //订单展示
     @ResponseBody    //把对象变成字符
     @RequestMapping("/index/vx")
-    public VxResp order(){
+    public VxResp shopp(){
 //        System.out.println(bean.name);
         VxResp vx = new VxResp();
+
+        vx.orders = orderMapper.select();
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         for(OrderBean bean : vx.orders){
             bean.ftime = sdf.format(bean.ctime); //data ctime-> String ftime
         }
-        //bean.ctime = new Date(); //当前时间，上架时间
-        //orderMapper.insert(bean);
 
         return vx;
     }
@@ -47,15 +47,14 @@ public class OrderController extends BaseController{
     //订单插入
     @ResponseBody
     @RequestMapping("/find/vx")
-    public VxResp order(OrderBean bean,Integer count){
+    public void order(OrderBean bean){
         System.out.println(bean);
-        System.out.println(count);
-        VxResp vx = new VxResp();
 
-        //bean.ctime = new Date(); //当前时间，上架时间
-        //orderMapper.insert(bean);
-
-        return vx;
+        Integer total = 0;
+        total += orderMapper.selectCartCount(bean.id) * orderMapper.selectCartPrice(bean.id);
+        bean.ctime = new Date();
+        bean.total = total;
+        orderMapper.insert(bean);
 
     }
 

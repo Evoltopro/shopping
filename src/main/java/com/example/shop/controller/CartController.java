@@ -24,6 +24,7 @@ public class CartController {
     @Autowired
     ProductMapper productMapper;
     List<ProductBean> list = new ArrayList<>();
+
     @ResponseBody
     @RequestMapping("/cart/vx")
     public void add(ProductBean bean,Integer uid){
@@ -34,7 +35,6 @@ public class CartController {
         //System.out.println(uid);
         //System.out.println(bean);
         cartMapper.insert(bean.id,uid);
-
 
     }
     @ResponseBody    //把对象变成字符
@@ -47,4 +47,5 @@ public class CartController {
         //System.out.println(vx.carts);
         return vx;
     }
+
 }

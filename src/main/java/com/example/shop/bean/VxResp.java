@@ -27,4 +27,7 @@ public class VxResp {
 
     public List<CartProduct> carts;
 
+    public List<InfoBean> infos;
+
+    public List<CollectBean> collects;
 }

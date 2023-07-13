@@ -1,12 +1,10 @@
 package com.example.shop.mapper;
 
+import com.example.shop.bean.CartProduct;
 import com.example.shop.bean.OrderBean;
 import com.example.shop.bean.ProductBean;
 import org.apache.catalina.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.beetl.sql.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -24,8 +22,12 @@ public interface OrderMapper extends BaseMapper<OrderBean> {
     @Delete("delete from tbl_order where id = #{id}")
     void delete(int id);
 
-    @Select("select id from view_order where username = #{username}")
-    Integer findId(String username);
+    @Select("select count from vv_cart where id = #{id}")
+    Integer selectCartCount(Integer id);
 
+    @Select("select price from vv_cart where id = #{id}")
+    Integer selectCartPrice(Integer id);
 
+    @Select("select * from tbl_order")
+    List<OrderBean> select();
 }

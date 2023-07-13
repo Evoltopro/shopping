@@ -4,6 +4,7 @@ import com.example.shop.bean.CommentBean;
 import com.example.shop.bean.ProductBean;
 import com.example.shop.bean.VxResp;
 import com.example.shop.mapper.CommentMapper;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -50,14 +52,19 @@ public class CommentController {
     }
     //增加
     //先跳转到增加页面
-    @RequestMapping("/add1")
-    public String add1(){
-        return "增加页面可以";
-    }
+//    @RequestMapping("/add1")
+//    public String add1(){
+//        return "增加页面可以";
+//    }
+    @ResponseBody
     @RequestMapping("/add2")
-    public String add(CommentBean commentBean){
+    public void add(CommentBean commentBean){
+        System.out.println(commentBean);
+        commentBean.pid=commentBean.id;
+        Date date = new Date();
+        commentBean.setCtime(date);
         commentMapper.add(commentBean);
-        return "展示页面";
+//        return "展示页面";
     }
     //修改
     //跳到修改页面
