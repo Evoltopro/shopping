@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.midi.Soundbank;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -58,6 +59,7 @@ public class OrderController extends BaseController{
     @RequestMapping("/add/vx")
     public void order(OrderBean bean){
 
+        System.out.println(bean.pid);
         Integer total = 0;
         total = bean.count * bean.price;
 
@@ -70,11 +72,12 @@ public class OrderController extends BaseController{
 
         orderMapper.insertA(bean.name,bean.mobile,bean.address,bean.total,bean.ctime,bean.uid);
 
-//        ShoppingBean shopping = new ShoppingBean();
-//        shopping.count = bean.count;
-//        shopping.oid = 2;
-//        shopping.pid = bean.pid;
-
+//        orderMapper.insert(bean);
+//        ShoppingBean shop = new ShoppingBean();
+//        shop.count = bean.count;
+//        shop.oid = bean.id;
+//        shop.pid = bean.pid;
+//        shoppingMapper.insert(shop.count,shop.pid,shop.oid);
         shoppingMapper.insert(bean.count,bean.pid,2);
 
 

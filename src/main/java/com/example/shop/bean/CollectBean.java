@@ -15,18 +15,15 @@ public class CollectBean {
     @TableId(type = IdType.AUTO)
     public Integer id; //自动递增主键
 
-    @NotNull
+    @TableField(exist=false)
     public String product;
-    @NotNull
+    @TableField(exist=false)
     public Integer price;
-    //1 把图片通过base64算法转成特别长的字符串
-    @NotNull
-    public String logo;
 
     public Integer uid;
     public Integer pid;
 
     //视图
     @TableField(exist=false)
-    public String user;
+    public String logo;
 }

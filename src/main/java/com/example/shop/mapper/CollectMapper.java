@@ -24,6 +24,8 @@ public interface CollectMapper extends BaseMapper<CollectBean> {
     @Select("select * from view_collect")
     List<CollectBean> select();
 
-    @Insert("insert into tbl_collect(uid,pid) values(#{uid},#{pid})")
-    void insert(int uid,int pid);
+    @Insert("insert into tbl_collect(pid,uid) values(#{pid},#{uid})")
+    void insertA(int pid,int uid);
+
+
 }

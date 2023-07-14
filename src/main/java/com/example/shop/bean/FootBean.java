@@ -27,4 +27,7 @@ public class FootBean {
 
     @TableField(exist = false) //数据库中没有
     public String ftime; //默认空
+
+    @TableField(exist = false) //数据库中没有
+    public String logo; //默认空
 }

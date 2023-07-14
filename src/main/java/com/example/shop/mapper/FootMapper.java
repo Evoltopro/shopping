@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -18,8 +19,8 @@ public interface FootMapper extends BaseMapper<FootBean> {
     @Select("select *from view_foot order by id desc")
     List<FootBean> selectView();
 
-    @Select("select * from view_foot where uid=#{uid}" )
-    List<FootBean> selectFoot(@Param("uid")int uid);
+    @Select("select * from v_foot")
+    List<FootBean> selectFoot();
 
     //web接口
     //@Select("select * from view_foot")
@@ -27,4 +28,7 @@ public interface FootMapper extends BaseMapper<FootBean> {
 
     @Insert("insert into tbl_foot(uid,pid) values(#{uid},#{pid})")
     void insert(int uid,int pid);
+
+    @Insert("insert into tbl_foot(uid,pid,time)values(#{uid},#{pid},#{ctime})")
+    void insertA(Integer uid, Integer pid, Date ctime);
 }

@@ -29,7 +29,7 @@ public class CollectController extends BaseController{
     @ResponseBody
     @RequestMapping("/all")
     public VxResp all(){
-        System.out.println("你被访问了");
+
         VxResp vx = new VxResp();
         vx.collects = collectMapper.select();
         //System.out.println(vx.collects);
@@ -44,7 +44,8 @@ public class CollectController extends BaseController{
         bean.uid=uid;
         bean.pid=id;
 
-        collectMapper.insert(bean);
+        System.out.println(id+"  "+uid);
+        collectMapper.insertA(bean.pid,bean.uid);
 
         return null;
     }

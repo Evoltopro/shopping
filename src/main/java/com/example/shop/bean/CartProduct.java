@@ -6,4 +6,7 @@ public class CartProduct extends ProductBean{
 
     @TableField(exist = false)
     public Integer count;
+
+    @TableField(exist = false)
+    public Integer pid;
 }

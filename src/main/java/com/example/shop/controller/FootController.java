@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/foot")
 public class FootController extends BaseController{
@@ -21,21 +23,24 @@ public class FootController extends BaseController{
     FootMapper footMapper;
     @ResponseBody
     @RequestMapping("/all")
-    public VxResp all(int uid){
+    public VxResp all(){
 
         VxResp vx = new VxResp();
-        vx.allfoot = footMapper.selectFoot(uid);
+        vx.allfoot = footMapper.selectFoot();
         System.out.println(vx.allfoot);
         return vx;
     }
 
     @ResponseBody
     @RequestMapping("/add")
-    public String add(int uid,int pid){
+    public String add(int uid,int id){
+        System.out.println(uid+ " "+ id);
+//
         FootBean bean=new FootBean();
         bean.uid=uid;
-        bean.pid=pid;
-        footMapper.insert(bean);
+        bean.pid=id;
+        bean.ctime= new Date();
+        footMapper.insertA(bean.uid,bean.pid,bean.ctime);
         return null;
     }
     @ResponseBody
