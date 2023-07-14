@@ -69,18 +69,21 @@ public class OrderController extends BaseController{
 
         System.out.println(bean);
 
-
+        //订单数据插入
         orderMapper.insertA(bean.name,bean.mobile,bean.address,bean.total,bean.ctime,bean.uid);
 
+//        //订单明细插入
 //        orderMapper.insert(bean);
 //        ShoppingBean shop = new ShoppingBean();
 //        shop.count = bean.count;
 //        shop.oid = bean.id;
 //        shop.pid = bean.pid;
 //        shoppingMapper.insert(shop.count,shop.pid,shop.oid);
+
+        //订单明细插入
         shoppingMapper.insert(bean.count,bean.pid,2);
 
-
+        //删除购物车
         cartMapper.delete(bean.pid);
         return vx;
     }

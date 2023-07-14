@@ -14,8 +14,8 @@
 
 <body>
 <ul class="breadcrumb" style="margin:0;">
-    <li><a href="#">订单管理</a></li>
-    <li>查询订单</li>
+    <li><a href="#">评论管理</a></li>
+    <li>查询评论</li>
 </ul>
 <form class="form-inline">
     <div class="row alert alert-info" style="margin:0;padding:3px;">
@@ -28,9 +28,10 @@
     <table class="table table-condensed table-striped">
         <tr>
             <th>编号</th>
-            <th>主题</th>
-            <th>描述</th>
-            <th>uid</th>
+            <th>主键</th>
+            <th>商品</th>
+            <th>用户</th>
+            <th>评论</th>
             <th>时间</th>
 
         </tr>
@@ -40,6 +41,7 @@
             <td>${(bean.id)!}</td>
             <td>${(bean.pid)!}</td>
             <td>${(bean.uid)!}</td>
+            <td>${(bean.comment)!}</td>
             <td>${(bean.ctime)?string('yyyy-MM-dd HH:mm')}</td>
         </tr>
     </#list>
