@@ -18,6 +18,7 @@ public interface ShoppingMapper extends BaseMapper<ShoppingBean> {
     List<ShoppingBean> select();
 
 
+
     @Insert("insert into tbl_shopping(count,pid,oid) values(#{count},#{pid},#{oid})")
     void insert(Integer count,Integer pid,Integer oid);
 }

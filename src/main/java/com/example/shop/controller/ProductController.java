@@ -3,6 +3,7 @@ package com.example.shop.controller;
 import com.example.shop.bean.ProductBean;
 import com.example.shop.bean.VxResp;
 import com.example.shop.mapper.CategoryMapper;
+import com.example.shop.mapper.FootMapper;
 import com.example.shop.mapper.ProductMapper;
 import com.example.shop.util.NotNullUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class ProductController extends BaseController{
     ProductMapper productMapper;
     @Autowired
     CategoryMapper categoryMapper;
+
+    @Autowired
+    FootMapper footMapper;
 
     @ResponseBody    //把对象变成字符
     @RequestMapping("/index/vx")

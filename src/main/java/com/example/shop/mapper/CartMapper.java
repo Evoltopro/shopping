@@ -1,5 +1,6 @@
 package com.example.shop.mapper;
 
+import com.example.shop.bean.CartBean;
 import com.example.shop.bean.CartProduct;
 import com.example.shop.bean.ProductBean;
 import org.apache.ibatis.annotations.Delete;

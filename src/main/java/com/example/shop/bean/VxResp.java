@@ -35,4 +35,6 @@ public class VxResp {
 
     public List<FootBean> allfoot;
 
+    public Integer totals;
+
 }

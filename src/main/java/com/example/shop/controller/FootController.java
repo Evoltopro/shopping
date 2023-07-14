@@ -22,7 +22,7 @@ public class FootController extends BaseController{
     @ResponseBody
     @RequestMapping("/all")
     public VxResp all(int uid){
-        System.out.println("你被访问了");
+
         VxResp vx = new VxResp();
         vx.allfoot = footMapper.selectFoot(uid);
         System.out.println(vx.allfoot);
