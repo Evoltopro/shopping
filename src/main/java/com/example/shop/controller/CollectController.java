@@ -39,7 +39,8 @@ public class CollectController extends BaseController{
 
     @ResponseBody
     @RequestMapping("/add")
-    public String add(int uid,int id){
+    public VxResp add(int uid,int id){
+        VxResp vx = new VxResp();
         CollectBean bean=new CollectBean();
         bean.uid=uid;
         bean.pid=id;
@@ -47,7 +48,7 @@ public class CollectController extends BaseController{
         System.out.println(id+"  "+uid);
         collectMapper.insertA(bean.pid,bean.uid);
 
-        return null;
+        return vx;
     }
 
 

@@ -28,8 +28,9 @@ public class CartController {
 
     @ResponseBody
     @RequestMapping("/cart/vx")
-    public void add(ProductBean bean,Integer uid){
+    public VxResp add(ProductBean bean,Integer uid){
 
+        VxResp vx = new VxResp();
 
         bean = productMapper.selectById(bean.id);
 
@@ -37,6 +38,7 @@ public class CartController {
         //System.out.println(bean);
         cartMapper.insert(bean.id,uid);
 
+        return vx;
     }
     @ResponseBody    //把对象变成字符
     @RequestMapping("/index/vx")   //返回网页

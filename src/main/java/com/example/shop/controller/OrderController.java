@@ -57,8 +57,8 @@ public class OrderController extends BaseController{
     //订单插入
     @ResponseBody
     @RequestMapping("/add/vx")
-    public void order(OrderBean bean){
-
+    public VxResp order(OrderBean bean){
+        VxResp vx = new VxResp();
         System.out.println(bean.pid);
         Integer total = 0;
         total = bean.count * bean.price;
@@ -82,7 +82,7 @@ public class OrderController extends BaseController{
 
 
         cartMapper.delete(bean.pid);
-
+        return vx;
     }
 
 

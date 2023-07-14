@@ -58,13 +58,14 @@ public class CommentController {
 //    }
     @ResponseBody
     @RequestMapping("/add2")
-    public void add(CommentBean commentBean){
+    public VxResp add(CommentBean commentBean){
+        VxResp vx = new VxResp();
         System.out.println(commentBean);
         commentBean.pid=commentBean.id;
         Date date = new Date();
         commentBean.setCtime(date);
         commentMapper.add(commentBean);
-//        return "展示页面";
+        return vx;
     }
     //修改
     //跳到修改页面

@@ -33,7 +33,8 @@ public class FootController extends BaseController{
 
     @ResponseBody
     @RequestMapping("/add")
-    public String add(int uid,int id){
+    public VxResp add(int uid,int id){
+        VxResp vx = new VxResp();
         System.out.println(uid+ " "+ id);
 //
         FootBean bean=new FootBean();
@@ -41,7 +42,7 @@ public class FootController extends BaseController{
         bean.pid=id;
         bean.ctime= new Date();
         footMapper.insertA(bean.uid,bean.pid,bean.ctime);
-        return null;
+        return vx;
     }
     @ResponseBody
     @RequestMapping("/del")

@@ -30,10 +30,12 @@ public class InfoController {
 
     @ResponseBody
     @RequestMapping("/add")
-    public void add(InfoBean infoBean){
+    public VxResp add(InfoBean infoBean){
+        VxResp vx = new VxResp();
         System.out.println(infoBean);
         infoBean.setCtime(new Date());
         infoMapper.insertA(infoBean.info,infoBean.description,infoBean.ctime, infoBean.uid);
+        return vx;
     }
 
     @RequestMapping("/list")  //查询列表
